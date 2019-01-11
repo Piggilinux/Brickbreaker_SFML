@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 // make const?.
-void Block::draw(sf::RectangleShape rect, sf::RenderTarget &target, sf::RenderStates states)
+void Block::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
   target.draw(rect, states);
 }

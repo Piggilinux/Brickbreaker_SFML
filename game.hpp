@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "block.hpp"
+#include "player.hpp"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ class Game : public sf::Drawable
 {
 private:
 
+  Player player;
   sf::Texture mBackgroundTex;
 	sf::Sprite mBackgroundSprite;
 

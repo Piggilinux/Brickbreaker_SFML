@@ -11,7 +11,7 @@ private:
   sf::RectangleShape rect;
   int block_size = 20;
 
-  void draw(sf::RectangleShape rect, sf::RenderTarget &target, sf::RenderStates states);
+  void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 public:
   Block(int x, int y, int block_size);
