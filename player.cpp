@@ -1,66 +1,39 @@
 #include "player.hpp"
 
-Player::Player()
+Player::Player(float direction, float speed)
+: Block(xPos, yPos, block_size_x, block_size_y)
 {
-  this->capacity = 10;
-  this->nr_of_blocks = 1;
-  this->block = new Block*[this->capacity];
-  this->block[0] = new Block(50, 450, 30);
+  this->block_size_x = block_size_x;
+  this->speed = speed;
+  rect.setSize(sf::Vector2f(150, 30));
+  rect.setPosition(sf::Vector2f(325, 450));
+  rect.setFillColor(sf::Color::Blue);
 }
 
 Player::~Player()
 {
-  this->freeMemory();
+
 }
 
-void Player::freeMemory()
+void Player::Update(float dt)
 {
-  for (int i = 0; i < this->nr_of_blocks; i++)
-  {
-    delete this->block[i];
-  }
-}
-
-void Player::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-  target.draw(*block[0], states); // ta bort? testa
-  for (int i = 0; i < this->nr_of_blocks; i++)
-  {
-    target.draw(*block[i], states);
-  }
-}
-
-void Player::makeCopy(const Player & origObject)
-{
-  this->nr_of_blocks= origObject.nr_of_blocks;
-  this->capacity = origObject.capacity;
-  this->block = new Block*[origObject.capacity];
-
-  for (int i = 0; i < this->nr_of_blocks; i++)
-  {
-    this->block[i] = new Block(*origObject.block[i]);
-  }
-}
-
-void Player::expand()
-{
-  this->capacity += 4;
-  Block* *temp = new Block*[this->capacity];
-
-  for (int i = 0; i < nr_of_blocks; i++)
-  {
-    temp[i] = this->block[i];
-  }
-
-  delete[] this->block;
-  this->block = temp;
-  this->initiate(this->nr_of_blocks);
-}
-
-void Player::initiate(int from)
-{
-  for (int i = 0; i < this->capacity; i++)
-  {
-    this->block[i] = nullptr;
-  }
+  // Movies player-tile according to choice.
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+  	{
+      // Stops Player-tile to move out of the window.
+      if (rect.getPosition().x <= 0)
+      {
+        rect.move(+(this->speed + 0.1), 0);
+      }
+      rect.move(-this->speed, 0);
+  	}
+  	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+  	{
+        // Stops Player-tile to move out of the window (150=size of player).
+      if ((rect.getPosition().x + 150) >= 800)
+      {
+        rect.move(-(this->speed + 0.1), 0);
+      }
+      rect.move(this->speed, 0);
+  	}
 }
