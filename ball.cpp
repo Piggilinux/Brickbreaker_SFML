@@ -1,18 +1,33 @@
 #include "ball.hpp"
 
-Ball::Ball(float direction, float speed)
+// void Ball::setRadius(float rad)
+// {
+//   circle.setRadius(rad);
+// }
+
+
+Ball::Ball(float velX, float velY)
 : Block(xPos, yPos, block_size_x, block_size_y)
 {
   this->block_size_x = block_size_x;
-  this->speed = speed;
+  this->velY = velY;
+  this->velX = velX;
+  //this->heading = heading;
 
-  // circle.setRadius(150);
-  // circle.setPosition(sf::Vector2f(385, 350));
+  // ask for help!
+  // circle.setRadius(50);
+  // circle.setPosition(sf::Vector2f(285, 250));
   // circle.setFillColor(sf::Color::Red);
 
   rect.setSize(sf::Vector2f(20, 20));
   rect.setPosition(sf::Vector2f(385, 350));
   rect.setFillColor(sf::Color::Red);
+
+    // circle.setOutlineThickness(4);
+    // circle.setOutlineColor(sf::Color::Black);
+    // circle.setFillColor(sf::Color::Red);
+    // circle.setOrigin(16.f / 2, 16.f / 2);
+    // circle.setPosition(800 / 2, 500 / 2);
 }
 
 Ball::~Ball()
@@ -23,39 +38,50 @@ Ball::~Ball()
 void Ball::Update(float dt)
 {
 
-  // float velX = 0.15f;
-  // float velY = 0.35f;
-  // 
-  // // Move the ball in the game loop
-  // Ball.Move(velX * App.GetFrameTime(), velY * App.GetFrameTime());
-  //
-  // // When the ball hits the top or bottom of the screen
-  // velY = -velY;
-  //
-  // // When the ball hits a paddle
-  // velX = -velX;
-  //
-  // Ball.Move(App.GetFrameTime() * this->speed * cos(ballAngle * (3.14159265 / 180)), App.GetFrameTime() * this->speed * sin(ballAngle));
+  rect.move(this->velX, this->velY);
+  if (rect.getPosition().y == 500)
+  {
+    this->velY = -this->velY;
+  }
+  if (rect.getPosition().y == 0)
+  {
+    this->velY = -this->velY;
+  }
+  if (rect.getPosition().x == 800)
+  {
+    this->velX = -this->velX;
+  }
+  if (rect.getPosition().x == 0)
+  {
+    this->velX = -this->velX;
+  }
+
+}
 
 
+// bool Ball::getHeading()
+// {
+//   return heading;
+// }
+// void Ball::setHeading(bool heading)
+// {
+//   this->heading = heading;
+// }
 
-  // // Movies player-tile according to choice.
-  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-  // 	{
-  //     // Stops Ball-tile to move out of the window.
-  //     if (rect.getPosition().x <= 0)
-  //     {
-  //       rect.move(+(this->speed + 0.1), 0);
-  //     }
-  //     rect.move(-this->speed, 0);
-  // 	}
-  // 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-  // 	{
-  //       // Stops Ball-tile to move out of the window (150=size of player).
-  //     if ((rect.getPosition().x + 150) >= 800)
-  //     {
-  //       rect.move(-(this->speed + 0.1), 0);
-  //     }
-  //     rect.move(this->speed, 0);
-  // 	}
+void Ball::setVelX(float vel)
+{
+  this->velX = vel;
+}
+void Ball::setVelY(float vel)
+{
+  this->velY = vel;
+}
+
+float Ball::getVelX()
+{
+  return this->velX;
+}
+float Ball::getVelY()
+{
+  return this->velY;
 }

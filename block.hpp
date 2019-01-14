@@ -12,6 +12,7 @@ private:
 protected:
   int xPos;
   int yPos;
+  //sf::CircleShape circle; // temp
   sf::RectangleShape rect;
   int block_size_x;
   int block_size_y;

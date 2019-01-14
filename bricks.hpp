@@ -24,8 +24,14 @@ public:
   ~Bricks();
   void operator=(const Bricks& origObject);
   sf::RectangleShape get_rect();
-  bool getBricksPos(sf::FloatRect positions);
+//  bool getBricksPos(sf::FloatRect positions);
+  sf::RectangleShape getBlockPos(int blockPos);
+  int getNrOfBricks();
   void Update(float dt);
+
+  void removeBlock(int nr_to_remove);
+
+  //Block* getBlock(int i);
 };
 
 #endif

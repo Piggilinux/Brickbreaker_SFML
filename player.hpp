@@ -10,7 +10,7 @@ private:
   float direction;
   float speed;
 public:
-  Player(float direction = 0, float speed = 0.4);
+  Player(float direction = 0, float speed = 4);
   ~Player();
 
   void Update(float dt);

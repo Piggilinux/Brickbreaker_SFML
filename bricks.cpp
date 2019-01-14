@@ -1,15 +1,16 @@
 #include "bricks.hpp"
 
+
 Bricks::Bricks()
 {
   this->capacity = 100;
   this->nr_of_blocks = 10;
   this->block = new Block*[this->capacity];
 //  this->block[0] = new Block(20, 20, 100, 30);
-  int xPos = 1;
+  int xPos = 0;
   for (int i = 0; i < this->nr_of_blocks; i++)
   {
-    this->block[i] = new Block(xPos, 20, 78, 30);
+    this->block[i] = new Block(xPos, 20, 80, 30);
     xPos += 80;
     // sf::RectangleShape derp = this->block[i]->get_rect();
     // this->block[i]->set_rect(derp.setFillColor(sf::Color::Blue));
@@ -19,6 +20,11 @@ Bricks::Bricks()
 Bricks::~Bricks()
 {
   this->freeMemory();
+}
+
+int Bricks::getNrOfBricks()
+{
+  return this->nr_of_blocks;
 }
 
 void Bricks::freeMemory()
@@ -71,4 +77,21 @@ void Bricks::initiate(int from)
   {
     this->block[i] = nullptr;
   }
+}
+
+sf::RectangleShape Bricks::getBlockPos(int blockPos)
+{
+  return this->block[blockPos]->get_rect();
+}
+
+
+void Bricks::removeBlock(int nr_to_remove)
+{
+  delete this->block[nr_to_remove];
+  if (this->nr_of_blocks != 0)
+  {
+      this->block[nr_to_remove] = this->block[--this->nr_of_blocks];
+  }
+
+  cout << this->nr_of_blocks << endl;
 }

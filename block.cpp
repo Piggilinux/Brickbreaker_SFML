@@ -26,6 +26,11 @@ Block::Block(int xPos, int yPos, int block_size_x, int block_size_y)
   // sets a 10-pixel wide black outline
   rect.setOutlineThickness(1);
   rect.setOutlineColor(sf::Color(0, 0, 0, 255));
+
+  //**********************************************
+  // circle.setRadius(50);
+  // circle.setPosition(sf::Vector2f(285, 250));
+  // circle.setFillColor(sf::Color::Red);
 }
 
 Block::~Block()
@@ -52,6 +57,3 @@ sf::RectangleShape Block::get_rect()
 {
   return sf::RectangleShape(rect);
 }
-
-//		if (helpFood.getRectFood().getGlobalBounds().intersects(food.getRectFood()
-//.getGlobalBounds()))
